@@ -6,8 +6,8 @@
  */
 
 // ! 변수
-let message = "hello"; // hello
-message = "hi"; // hi
+let message = 'hello'; // hello
+message = 'hi'; // hi
 // let message = "hi"; // ! let은 재선언 불가능 재할당 가능
 
 console.log(message); // hi
@@ -24,23 +24,59 @@ const array = [1, 2, 3];
 array[0] = 3;
 console.log(array); // [3, 2, 3]
 
-const object = { name: "우빈" };
-object.name = "이우빈";
+const object = { name: '우빈' };
+object.name = '이우빈';
 console.log(object); // 이우빈
 
-console.log("-----------------------------");
+console.log('-----------------------------');
 
-console.log("variable");
+console.log('variable');
 
 let admin;
 let name;
 
-name = "john";
+name = 'john';
 admin = name;
 
 console.log(admin);
 
-let OUR_PLANT_NAME = "earth";
-let currentUserName = "우빈";
+let OUR_PLANT_NAME = 'earth';
+let currentUserName = '우빈';
 
 console.log(OUR_PLANT_NAME, currentUserName);
+
+/* ------------------ */
+/* Variables          */
+/* ------------------ */
+
+/* 다음 내용을 분석한 후, 프로그래밍 할 수 있도록 변수와 상수를 작성해봅니다. ----------- */
+
+/* variables ----------------------------------------------------------- */
+
+// - 갯수 별 상품 가격 계산하기
+let calcProductPriceQuantity;
+
+// - 구매 제품 가격의 총 합
+let totalProductPrice;
+
+// - 구매 결제 여부
+// ? is, has가 변수명으로 들어올 때는 암묵적으로 개발자들끼리 불리언값이 할당된다.
+let isPayment = true;
+let hasPayment = false;
+
+// - 구매 결제 내역
+let isPaymentList = true;
+
+// - 오늘의 운세
+let todayFortune = 'good';
+
+/* constant variables -------------------------------------------------- */
+
+// - 1년 기준 일(day)자 수
+const DAY_OF_YEAR = 365;
+
+// - 브랜드 접두사
+const BRAND_PREFIX = 'nike';
+
+// - 상품 정보
+const productInfo = '비싸';
