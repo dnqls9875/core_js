@@ -13,3 +13,7 @@
 
 - [x] Code Structure [바로가기](https://github.com/dnqls9875/core_js/blob/01.core/client/chapter/core/01.codeStructure.js)
 - [x] Variable [바로가기](https://github.com/dnqls9875/core_js/blob/01.core/client/chapter/core/02.variable.js)
+- [x] Strict Mode [바로가기](https://github.com/dnqls9875/core_js/blob/01.core/client/chapter/core/03.strictMode.js)
+- [x] Global This [바로가기](https://github.com/dnqls9875/core_js/blob/01.core/client/chapter/core/04.globalThis.js)
+- [x] Legacy Var [바로가기](https://github.com/dnqls9875/core_js/blob/01.core/client/chapter/core/05.legacyVar.js)
+- [x] Data Type [바로가기](https://github.com/dnqls9875/core_js/blob/01.core/client/chapter/core/06.dataType.js)
