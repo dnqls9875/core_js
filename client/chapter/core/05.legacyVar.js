@@ -86,3 +86,5 @@ console.log(c); // 10 let이 블록스코프에 있으면 접근을 하지 못�
 
 console.log(d); // undefined
 console.log(e); // error 이유는 let은 TDZ에 속해있기 때문에 변수 선언 이전에 참조가 먼저 실행되면 에러가 뜬다.
+var d = 123456;
+let e = 123456;
