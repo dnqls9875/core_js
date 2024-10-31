@@ -129,6 +129,28 @@ const _d = new User2();
 
 // Array
 
+const arr = [1, 2, 3, 4, 5];
+
+const newArray = new Array(10); // [,,,,,,,,,,]
+console.log(newArray); // 배열도 객체다. 배열은 순서가 정해져있다.
+
 // function
+// ? return을 하지 않으면 값은 undefined
+function sum(a, b) {
+  return a + b;
+}
+const result = sum(1, 2);
+
+console.log(result); // 3
+
+// ! 함수 예시
+
+function 붕어빵틀(재료) {
+  // 재료 : 인자 (paramter)
+  return `따끈하고 맛있는 ${재료} 맛 붕어빵 입니다!`;
+}
+const 팥붕 = 붕어빵틀('팥'); // 팥 : 인수 (aguments)
+const 슈붕 = 붕어빵틀('슈크림');
+const 피붕 = 붕어빵틀('피자');
 
 // this
