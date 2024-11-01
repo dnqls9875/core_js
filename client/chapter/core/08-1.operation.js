@@ -61,6 +61,9 @@ let second = [4, 5, 6];
 // ? spread syntax 전개 구문
 console.log([...first, ...second]); // ...은(배열이 벗겨짐) // [1,2,3,4,5,6]
 
+// ? rest parameter spread syntax와는 다르다
+function sum(...rest) {}
+
 // const obj = {
 //   name: '우빈',
 //   age: 30,
