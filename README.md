@@ -17,3 +17,20 @@
 - [x] Global This [바로가기](https://github.com/dnqls9875/core_js/blob/01.core/client/chapter/core/04.globalThis.js)
 - [x] Legacy Var [바로가기](https://github.com/dnqls9875/core_js/blob/01.core/client/chapter/core/05.legacyVar.js)
 - [x] Data Type [바로가기](https://github.com/dnqls9875/core_js/blob/01.core/client/chapter/core/06.dataType.js)
+- [x] Type Conversion [바로가기](https://github.com/dnqls9875/core_js/blob/01.core/client/chapter/core/07.typeConversions.js)
+
+<hr>
+
+### Operations
+
+- [x] Operations (기본 연산자) [바로가기](https://github.com/dnqls9875/core_js/blob/01.core/client/chapter/core/08-1.operation.js)
+- [x] Operations (비교 연산자) [바로가기](https://github.com/dnqls9875/core_js/blob/01.core/client/chapter/core/08-2.operation.js)
+
+<hr>
+
+### Condition
+
+- [x] Condition (if조건문) [바로가기](https://github.com/dnqls9875/core_js/blob/01.core/client/chapter/core/09-1.condition.js)
+- [x] Condition (논리연산자) [바로가기](https://github.com/dnqls9875/core_js/blob/01.core/client/chapter/core/09-2.condition.js)
+- [x] Condition (switch..case) [바로가기](https://github.com/dnqls9875/core_js/blob/01.core/client/chapter/core/09-3.condition.js)
+- [ ] Condition (nullish) [바로가기](https://github.com/dnqls9875/core_js/blob/01.core/client/chapter/core/09-4.condition.js)

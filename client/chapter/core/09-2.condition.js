@@ -66,10 +66,10 @@ function login() {
   // if(userName === null || userName === undefined) return
   // if(!userName) return
 
-  if (userName.toLowerCase() === 'admin') {
+  if (userName?.toLowerCase() === 'admin') {
     let password = prompt('비밀번호를 입력해주세요');
 
-    if (password.toUpperCase() === 'MASTER') {
+    if (password?.toUpperCase() === 'MASTER') {
       console.log('로그인 성공');
     } else if (password === null) {
       console.log('취소됐습니다.');
@@ -85,5 +85,3 @@ function login() {
 }
 
 login();
-
-const teacher = ['노종국', '이강현', 'MJ', '조영민', '공세현', '이성우'];
