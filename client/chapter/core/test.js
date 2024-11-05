@@ -11,6 +11,6 @@
 // 3. 추가조건
 // - 구매 금액이 2만원일 경우, 추가로 5% 할인이 부여된다.
 
-function discountPrice(userState, count, price) {}
+// function discountPrice(userState, count, price) {}
 
-discountPrice('프리미엄 회원', 2, 23500);
+// discountPrice('프리미엄 회원', 2, 23500);
