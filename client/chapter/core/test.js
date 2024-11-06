@@ -14,3 +14,28 @@
 // function discountPrice(userState, count, price) {}
 
 // discountPrice('프리미엄 회원', 2, 23500);
+
+function discountPrice(userState, count, price) {
+  let discount = 0;
+  if (count === 1) {
+    discount += 5;
+  }
+
+  if (userState === '프리미엄 회원') {
+    discount += 20;
+  } else if (userState === '일반 회원' && count > 1) {
+    discount += 10;
+  } else if (userState === '비회원' && count > 1) {
+    discount += 0;
+  }
+
+  if (price >= 20000) {
+    discount += 5;
+  }
+
+  const totalPrice = price - price * (discount * 0.01);
+  // const totalPrice = price * (1 - discount / 100);
+  return totalPrice;
+}
+
+console.log(discountPrice('프리미엄 회원', 2, 23500));

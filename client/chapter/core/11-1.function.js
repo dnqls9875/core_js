@@ -111,14 +111,47 @@ function setCss(node, prop, value) {
     throw new TypeError('setCss 함수의 두 번째 인수는 유효한 css 속성이여야 합니다.');
   }
   if (!value) {
-    throw new Error('setCss 함수의 세 번째 인수는 필수 입력 값 입니다.');
+    throw new TypeError('setCss 함수의 세 번째 인수는 필수 값입니다.');
   }
 
   node.style[prop] = value;
-  // 값을 설정만 하는 경우는 return이 필요없다.
 }
 
 console.log(setCss('.first', 'color', 'skyblue'));
+
+// getComputedStyle('태그').background; // ? 자바스크립트 돔에 접근해서 스타일 값을 가져오는 방법
+
+function getCss(node, prop) {
+  if (typeof node === 'string') {
+    node = document.querySelector(node);
+  }
+
+  if (!(prop in document.body.style)) {
+    throw new TypeError('getCss 함수의 두 번째 인수는 유효한 css 속성이여야 합니다.');
+  }
+
+  return getComputedStyle(node)[prop];
+}
+
+const fontSize = getCss(first, 'color');
+console.log(fontSize);
+
+// 관심사의 분리
+function css(node, prop, value) {
+  // if (!value) {
+  //   // getter
+  //   return getCss(node, prop);
+  // } else {
+  //   // setter
+  //   setCss(node, prop, value);
+  // }
+
+  return !value ? getCss(node, prop) : setCss(node, prop, value);
+}
+
+// 값이 있냐 없냐 차이
+css('.first', 'color');
+css('.first', 'color', 'red');
 
 // node의 값을 'h1'으로 받았을 경우
 
