@@ -52,9 +52,9 @@ let calculateTotal = function () {
   // forEach는 반복만 처리하고 어떤 값도 내보내지 않는다.
   // 배열을 순환 => 값을 반환하지 않는다.
 
-  // arr.forEach(function (price) {
-  //   total += price;
-  // });
+  arr.forEach(function (price) {
+    total += price;
+  });
 
   // ! reduce 배열을 순환 => 값을 반환 문자,숫자,객체,배열,함수
   // acc : 누적기, cur : 현재 값, index : 현재 인덱스
@@ -178,12 +178,6 @@ movePage(
   () => console.log('잘못된 경로를 입력하셨습니다.')
 );
 
-// 함수 선언문 vs. 함수 (표현)식
-
-// 즉시 실행 함수 (표현)식
-// Immediately Invoked Function Expression
-let IIFE;
-
 // 콜백함수
 function getGeolocation(success, fail) {
   let data;
@@ -200,3 +194,36 @@ getGeolocation(
   },
   () => {}
 );
+
+// 함수 선언문 vs. 함수 (표현)식
+
+// 즉시 실행 함수 (표현)식
+// Immediately Invoked Function Expression
+let IIFE;
+
+/**
+ * 함수가 선언됨과 동시에 실행되는 것을 말합니다.
+ *
+ * var 블록 스코프 : x
+ * var 함수 스코프 : o
+ *
+ * encapsulation (캡슐화) => 변수를 보호하기 위해서 사용
+ *
+ * 모듈 프로그래임 => import export
+ */
+
+const MASTER = (function (g) {
+  console.log(g);
+
+  var uuid = 'dfadfsdafsadfsdaf';
+  return {
+    getKey() {
+      return uuid;
+    },
+    setKey(value) {
+      uuid = value;
+    },
+  };
+})(window);
+
+console.log(MASTER);

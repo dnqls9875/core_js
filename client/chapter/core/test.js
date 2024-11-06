@@ -15,27 +15,29 @@
 
 // discountPrice('프리미엄 회원', 2, 23500);
 
-function discountPrice(userState, count, price) {
-  let discount = 0;
-  if (count === 1) {
-    discount += 5;
-  }
+// font 함수
+function rem() {}
 
-  if (userState === '프리미엄 회원') {
-    discount += 20;
-  } else if (userState === '일반 회원' && count > 1) {
-    discount += 10;
-  } else if (userState === '비회원' && count > 1) {
-    discount += 0;
-  }
+console.log(rem(20) === '1.25rem');
+console.log(rem('25px') === '1.5625rem');
+console.log(rem('30px', 10) === '3rem');
 
-  if (price >= 20000) {
-    discount += 5;
-  }
+// setCss 함수
+function setCss() {}
 
-  const totalPrice = price - price * (discount * 0.01);
-  // const totalPrice = price * (1 - discount / 100);
-  return totalPrice;
-}
+const result = console.log(setCss('.first', 'color', 'skyblue'));
+console.log(result);
 
-console.log(discountPrice('프리미엄 회원', 2, 23500));
+// getCss 함수
+function getCss() {}
+
+const getResult = console.log(getCss('.first', 'color'));
+console.log(getResult);
+
+// css 함수 관심사의 분리
+
+function css() {}
+
+console.log(css('.first', 'color'));
+
+console.log(css('.first', 'color', 'red'));
