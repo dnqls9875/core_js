@@ -101,7 +101,7 @@ obj.totalPrice();
 // Array instance method => 알고리즘 단골 문제들이다.
 // forEach : 배열을 순환 => 값을 반환하지 않는다.
 // reduce : 배열을 순환 => 값을 반환한다.
-// map : 배열을 순환 => 값을 반환 (새로운 배열)
+// map : 배열을 순환 => 값을 반환 (새로운 배열) -> react에서 많이 사용
 
 const friends = ['이강현', '박혜미', '공세현', 'MJ'];
 const f = friends.map(function (name, index) {
