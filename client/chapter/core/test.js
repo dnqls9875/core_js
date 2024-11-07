@@ -1,22 +1,24 @@
 // pow(numeric: number, powerCount: number): number;
 
-let pow = (numeric, powerCount) => {
-  return Array(powerCount)
-    .fill(numeric)
-    .reduce((acc, cur) => {
-      return acc * cur;
-    });
-};
+function calculateTotal() {
+  let total = 0;
+  // const arr = Array.from(arguments);
+  const arr = [...arguments];
+  return arr.reduce((acc, cur) => acc + cur);
 
-const result = pow(2, 53);
+  // arr.forEach((price) => {
+  //   return (total += price);
+  // });
+
+  // for (const value of arguments) {
+  //   total += value;
+  // }
+  // console.log(total);
+
+  // ! 강제 부모 배열로 변경
+  // arguments.__proto__ = Array.prototype;
+  // return arguments.reduce((acc, cur) => acc + cur);
+}
+
+const result = calculateTotal(10000, 30000, 45000, 2500, 30000, 25000);
 console.log(result);
-
-let repeat = (text, count) => {
-  return Array(count)
-    .fill(text)
-    .reduce((acc, cur) => acc + cur, '');
-};
-
-const repeatResult = repeat('배고파🍛', 3);
-
-console.log(repeatResult);
