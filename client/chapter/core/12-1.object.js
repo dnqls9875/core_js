@@ -190,10 +190,10 @@ function isEmptyObject() {
 /* 배열 구조 분해 할당  destructuring assignments   */
 /* ------------------------------------------- */
 
-// 순서(order)를 바꿀 수 없다. 변수명은 내맘대로 바꿀 수 있다.
 const arr = [10, 100, 1000, 10_100];
 
 // 기본값 설정
+// 순서(order)를 바꿀 수 없다. 변수명은 내맘대로 바꿀 수 있다.
 const [a1, a2, a3, a4, a5 = 100_000] = arr;
 // a1을 받기 싫으면 a1을 지워주는데 ,는 있어야 함
 // a1 나머지는 ...rest
@@ -208,3 +208,56 @@ console.log(a5);
 /* -------------------------------------------- */
 /* 객체 구조 분해 할당  destructuring assignments    */
 /* --------------------------------------------- */
+
+const salaries = {
+  김미리: 800,
+  박혜미: 130,
+  이성우: 400,
+  명재휘: 80,
+  // 이영범: undefined, or 없는 상태
+};
+
+// 객체 값이 설정이 안되어있는 상태에서(undefined) 변수에서 기본값을 줄 수 있다.
+
+/**
+ * 객체의 구조 분해 할당은 순서가 상관 없다. (순서 중요x)
+ * 객체의 key와 변수의 이름이 동일해야 함.
+ * 중요한건 객체 분해 할당 시 객체에 존재하는 이름들만 가져와서 분해 할당 할 수 있다.
+ * 변수명 변경 가능
+ *
+ */
+
+// 박혜미:박 => 별칭을 지어줬다.
+const { 김미리, 박혜미: 박, 이성우, 명재휘, 이영범 = 300 } = salaries;
+
+// console.log(박혜미); [x]
+console.log(박); // [o]
+
+console.log(이영범);
+
+// createUserObject은 data라는 객체 인수를 가지고 있음 인자로도 객체가 옴
+function createUserObject({ name, age, address, ...rest } = {}) {
+  console.log(rest);
+
+  // name,age,address를 제외한 나머지
+  // 왜 구조 분해 할당 하느냐?
+  // obj.name, obj.age 너무 번거롭다.
+  // const { name, age, address, phone, job } = obj;
+
+  return { name, age, address }; // ! 이건 객체를 만들어낸거지 객체를 구조 분해 할당한 건 아님
+}
+
+const data = {
+  name: '이우빈',
+  age: 30,
+  address: '양주시',
+  phone: '010-9875-4080',
+  job: '백조',
+};
+
+const user = createUserObject(data);
+// const user = createUserObject('심선범', '35', '중랑구', '010-7169-0262', '강사');
+
+const { log } = console;
+
+log('안녕');
