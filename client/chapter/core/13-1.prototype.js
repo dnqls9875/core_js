@@ -91,3 +91,12 @@ function sum(a, b) {
 }
 
 sum.call('안녕!', 10, 20);
+
+function User(name) {
+  this.name = name;
+}
+
+const user1 = new User('우빈');
+const user2 = new User('선범');
+
+console.log(user1.name, user2.name);
