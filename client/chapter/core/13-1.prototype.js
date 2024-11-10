@@ -19,23 +19,23 @@ const animal = {
   stomach: [],
   get eat() {
     // getter
-    return this.stomach;
+    return this.stomach; // this: animal
   },
   set eat(food) {
     // setter
-    this.stomach = [];
-    this.stomach.push(food);
+    this.stomach = []; // this: animal
+    this.stomach.push(food); // this: animal.stomach.push(food)
   },
 };
 
 const tiger = {
   pattern: '호랑이 무늬',
   hunt(target) {
-    this.prey = target;
-    this.eat = this.prey;
+    this.prey = target; // 현재 객체의 속성 target 값을 this.prey에 할당 즉 사냥할 대상을 prey에 저장
+    this.eat = this.prey; // this.eat 속성에 this.prey 값을 할당합니다. 즉, 사냥할 대상(prey)을 먹이(eat) 속성으로도 저장합니다. prey와 eat 속성은 동일한 값을 가지게 됩니다.
     return `${target}에게 조용히 접근한다.`;
   },
-  __proto__: animal,
+  __proto__: animal, // animal 객체를 상속
 };
 
 const 백두산호랑이 = {

@@ -45,7 +45,6 @@ const spreadObject = { ...messenger };
 console.log(spreadObject);
 
 // 4. 객체를 복사해주는 유틸 함수
-
 const copiedObject = (obj) => Object.assign({}, obj);
 const newObject = copiedObject(messenger);
 
@@ -90,8 +89,12 @@ let clone_deep_object = cloneDeep(containerStyles);
 
 // 1. 깊은 복사 유틸리티 함수
 function cloneDeep(object) {
+  console.log(object);
+
   return Object.fromEntries(
     Object.entries(object).map(([key, value]) => {
+      console.log(value);
+
       let type = typeof value;
       if (value && type === 'object') {
         value = cloneDeep(value);

@@ -235,15 +235,14 @@ console.log(박); // [o]
 
 console.log(이영범);
 
+// name,age,address를 제외한 나머지
+// 왜 구조 분해 할당 하느냐?
+// obj.name, obj.age 너무 번거롭다.
+// const { name, age, address, phone, job } = obj;
+
 // createUserObject은 data라는 객체 인수를 가지고 있음 인자로도 객체가 옴
 function createUserObject({ name, age, address, ...rest } = {}) {
   console.log(rest);
-
-  // name,age,address를 제외한 나머지
-  // 왜 구조 분해 할당 하느냐?
-  // obj.name, obj.age 너무 번거롭다.
-  // const { name, age, address, phone, job } = obj;
-
   return { name, age, address }; // ! 이건 객체를 만들어낸거지 객체를 구조 분해 할당한 건 아님
 }
 
@@ -257,6 +256,7 @@ const data = {
 
 const user = createUserObject(data);
 // const user = createUserObject('심선범', '35', '중랑구', '010-7169-0262', '강사');
+console.log(user);
 
 const { log } = console;
 

@@ -55,13 +55,13 @@ const navigationMenu = {
   getItem(index) {
     return this.items[index];
   },
-  addItem: (newItem) => {
+  addItem(newItem) {
     this.items.push(newItem);
   },
 };
 
 navigationMenu.addItem({
-  id: 'link-l',
+  name: 'link-l',
   text: 'lycos',
-  link: 'https://lycos.co.kr',
+  url: 'http://lycos.co.kr',
 });
