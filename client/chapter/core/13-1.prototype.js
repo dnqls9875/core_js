@@ -82,21 +82,40 @@ function Tiger(name) {
 
 const 금강산호랑이 = new Tiger('금순이');
 
-// call -> 함수를 대신 실행시켜줌 -> 빌려쓰기 => 안에 this를 바꿔야 하는 경우에
-// apply
-// bind
+// 함수 옆에 함수를 나열하면 static method다.
+Tiger.bark = function (sound) {
+  return sound;
+};
+
+// call -> 함수를 대신 실행시켜줌 -> 빌려쓰기 => 안에 this를 바꿔야 하는 경우에  / 인수를 값으로 받는다.
+// apply -> 함수를 대신 실행시켜줌 -> 빌려쓰기 => 인수를 배열로 받는다.
+// bind -> 함수를 대신 실행 X -> 빌려쓰기 => 바로 함수가 실행되면 안될 때 많이 사용
 
 function sum(a, b) {
-  console.log(this, a + b); // 여기서의 this는 window임
+  console.log(this, a + b); // 여기서의 this는 window임 일반 함수이므로
 }
 
-sum.call('안녕!', 10, 20);
+// sum.call('안녕!', 10, 20); // call
 
-function User(name) {
-  this.name = name;
+// sum.apply('안녕!', [10, 20]); // apply
+
+const _sum = sum.bind('안녕!', 10, 20);
+
+// function User(name) {
+//   this.name = name;
+// }
+
+// const user1 = new User('우빈');
+// const user2 = new User('선범');
+
+// console.log(user1.name, user2.name);
+
+function handleClick() {
+  console.log('clicked!');
 }
 
-const user1 = new User('우빈');
-const user2 = new User('선범');
+const handleBindClick = handleClick.bind('hello');
 
-console.log(user1.name, user2.name);
+// 이벤트 같은 경우는 함수 전체를 전달해야 한다.
+// 바로 함수가 실행되면 안될 때 많이 사용
+document.querySelector('.first').addEventListener('click', handleClick.bind());

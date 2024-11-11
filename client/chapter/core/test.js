@@ -20,5 +20,11 @@ function calculateTotal() {
   // return arguments.reduce((acc, cur) => acc + cur);
 }
 
-const result = calculateTotal(10000, 30000, 45000, 2500, 30000, 25000);
-console.log(result);
+function solution(my_string) {
+  const arr = [...my_string];
+  const reverseArray = arr.reverse();
+  const revserString = reverseArray.join('');
+  console.log(revserString);
+}
+
+solution('jaron');
