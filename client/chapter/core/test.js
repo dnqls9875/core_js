@@ -19,12 +19,3 @@ function calculateTotal() {
   // arguments.__proto__ = Array.prototype;
   // return arguments.reduce((acc, cur) => acc + cur);
 }
-
-function solution(my_string) {
-  const arr = [...my_string];
-  const reverseArray = arr.reverse();
-  const revserString = reverseArray.join('');
-  console.log(revserString);
-}
-
-solution('jaron');
