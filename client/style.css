@@ -7,3 +7,34 @@ h1 {
 .second {
   display: inline-block;
 }
+
+body {
+  overflow: hidden;
+}
+
+.space {
+  inline-size: 100vw;
+  block-size: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .dot {
+    inline-size: 10px;
+    aspect-ratio: 1/1;
+    background-color: red;
+    border-radius: 50%;
+  }
+
+  .circle {
+    inline-size: 50px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background-color: dodgerblue;
+    position: absolute;
+  }
+
+  & div {
+    position: absolute;
+  }
+}

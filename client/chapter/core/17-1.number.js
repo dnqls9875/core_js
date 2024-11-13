@@ -48,8 +48,7 @@ let pow = Math.pow(2, 53); // 2 ** 53
 
 // 최소, 최대 값 사이 난수 반환 함수
 let getRandomMinMax = (min, max) => {
-  // return Math.floor(Math.random(Math.max(min), Math.min(max)) * 10 + min );
-  return Math.floor(Math.random() * (max - min) + min);
+  return Math.floor(Math.random() * max - min + min);
 };
 
 console.log(getRandomMinMax(2, 10));

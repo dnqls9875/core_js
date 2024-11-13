@@ -48,7 +48,7 @@ console.log(fullName);
 
 const button = document.querySelector('.my-button');
 
-// ⭐️⭐️⭐️ throttle, debounce ⭐️⭐️⭐️⭐️
+// ⭐️⭐️⭐️ throttle, debounce ⭐️⭐️⭐️⭐️ // 한번 찾아보기
 
 const t = setTimeout(() => {
   const tag = `<button type="button" class="my-button">BTN</button>`;
@@ -72,6 +72,7 @@ let count = 0;
 
 //   if(count >= 500){
 //     clearInterval(c)
+//     clearTimeout(c)
 //   }
 
 // },0)
