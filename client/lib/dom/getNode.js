@@ -5,11 +5,9 @@ function getNode(node, context = document) {
   return context.querySelector(node);
 }
 
-getNode('.about');
-
-// function getNodes(node, context = document) {
-//   if (context.nodeType !== 9) {
-//     context = document.getNode(context);
-//   }
-//   return context.querySelectorAll(node);
-// }
+function getNodes(node, context = document) {
+  if (context.nodeType !== 9) {
+    context = document.getNode(context);
+  }
+  return context.querySelectorAll(node);
+}

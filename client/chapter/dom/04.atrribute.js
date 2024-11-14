@@ -26,20 +26,6 @@
 // - elementNode.removeAttribute(name) – 속성값을 지움
 // - elementNode.attributes – 열거 가능한(iterable) 속성 집합을 반환함
 
-function setAttr() {}
-
-setAttr();
-
-function getattr(node, prop) {
-  if (isString(node)) node = getNode(node);
-
-  if (!isString(prop)) throw typeError('getAttr 함수에 전달된 두 번째 인수는 문자 타입이여야 합니다.');
-
-  return node.getAttribute(prop);
-}
-
-console.log(getattr('#about', 'id'));
-
 const about = getNode('.about');
 // 1. class 속성이 있는지 확인
 const hasAt = about.hasAttribute('class');
