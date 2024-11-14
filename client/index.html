@@ -6,36 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
     <link rel="shortcut icon" href="./assets/favicon.svg" type="image/x-icon" />
-    <script src="./utils/type.js" defer></script>
-    <script src="./chapter/core/20.arrayMethod.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="./lib/error/typeError.js" defer></script>
+    <script src="./lib/utils/type.js" defer></script>
+    <script src="./lib/dom/getNode.js" defer></script>
+    <script src="./chapter/dom/04.atrribute.js" defer></script>
   </head>
   <body>
-    <h1>
-      <span class="first">core</span>
-      <span class="second">javascript</span>
-      <button type="button" class="button">CTA</button>
-    </h1>
-
-    <ul></ul>
-
-    <!-- <div class="space">
-      <div class="dot"></div>
-      <div class="circle"></div>
-    </div> -->
-    <!-- 
-    <form>
-      <input type="text" class="todo" />
-      <button type="submit" class="btn">등록</button>
-
-      <ul class="todoList"></ul>
-    </form> -->
-
-    <!-- <hr />
-    <form>
-      <input type="text" class="todo2" />
-      <button type="submit" class="btn2">등록</button>
-
-      <ul class="todoList2"></ul>
-    </form> -->
+    <nav>
+      <ul>
+        <!-- data 수식어를 붙히는 이유? -->
+        <!-- HTML은 리빙 스텐다드 이기 때문에 언젠가 버전업이 되면서 -->
+        <!-- name이라는 자바스크립트 속성이 들어올 수 있다. -->
+        <!-- 아직 표준 속성은 아니지만 언젠가 생길 수 있기 때문에 
+        더 안전하게 사용하기 위해 data를 붙혀서 사용한다. -->
+        <li class="about" data-name="about" id="about">
+          😉
+          <span>ABOUT</span>
+        </li>
+        <li class="home" data-name="home">
+          🏠
+          <span>HOME</span>
+        </li>
+        <li class="contact" data-name="contact">
+          📞
+          <span>CONTACT</span>
+        </li>
+      </ul>
+    </nav>
   </body>
 </html>
