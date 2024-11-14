@@ -75,3 +75,7 @@ try {
 
   document.body.innerHTML = '404 not found 💫';
 }
+
+/**
+ *
+ */

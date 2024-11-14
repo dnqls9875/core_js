@@ -8,6 +8,13 @@
 // Symbol.Iterator 메서드는 이터레이터 객체를 반환하며
 // 이터레이터 객체는 next() 메서드를 가짐 ({ done: Boolean, value: any } 타입 반환)
 
+/**
+ * iterable Object 또하나의 자료형이다.
+ * 배열과는 다른점 next라는것으로 다음값을 꺼낼 수 있다.
+ * iterable Object는 반복도 되면서 내가 원할 때 만들어 쓰는 개념
+ * 반복에 대한 고성능을 끌어올릴때 많이 사용한다.
+ */
+
 const arr = '1 2 3 4 5 6'.split(' ');
 
 for (const a of arr) {
