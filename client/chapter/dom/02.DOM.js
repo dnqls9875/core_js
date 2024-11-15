@@ -68,3 +68,7 @@ console.log(li);
 /* 문서 대상 확인 */
 // - matches
 // - contains
+
+/**
+ * 상태 변수 관리 -> 어려우면 빼라
+ */

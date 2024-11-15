@@ -38,3 +38,36 @@ body {
     position: absolute;
   }
 }
+
+nav {
+  transition: transform 1s;
+}
+
+.is-active {
+  transform: translateY(100px) rotate(360deg);
+}
+
+.ground {
+  overflow: hidden;
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  translate: -50% -50%;
+  width: 400px;
+  height: 300px;
+  background-color: green;
+  border: 5px solid #000;
+  cursor: none;
+}
+
+.ball {
+  display: inline-block;
+  transition: all 1s;
+  pointer-events: none;
+}
+
+.emotion {
+  position: absolute;
+  pointer-events: none;
+  font-size: 2rem;
+}

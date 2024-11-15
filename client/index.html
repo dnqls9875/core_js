@@ -8,18 +8,18 @@
     <link rel="shortcut icon" href="./assets/favicon.svg" type="image/x-icon" />
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="./lib/error/typeError.js" defer></script>
+    <script src="./lib/error/syntaxError.js" defer></script>
+    <script src="./lib/error/refError.js" defer></script>
     <script src="./lib/utils/type.js" defer></script>
     <script src="./lib/dom/getNode.js" defer></script>
-    <script src="./chapter/dom/04.atrribute.js" defer></script>
+    <script src="./lib/dom/attr.js" defer></script>
+    <script src="./lib/dom/insert.js" defer></script>
+    <script src="./lib/dom/css.js" defer></script>
+    <script src="./chapter/dom/test.js" defer></script>
   </head>
   <body>
     <nav>
       <ul>
-        <!-- data 수식어를 붙히는 이유? -->
-        <!-- HTML은 리빙 스텐다드 이기 때문에 언젠가 버전업이 되면서 -->
-        <!-- name이라는 자바스크립트 속성이 들어올 수 있다. -->
-        <!-- 아직 표준 속성은 아니지만 언젠가 생길 수 있기 때문에 
-        더 안전하게 사용하기 위해 data를 붙혀서 사용한다. -->
         <li class="about" data-name="about" id="about">
           😉
           <span>ABOUT</span>
@@ -34,5 +34,11 @@
         </li>
       </ul>
     </nav>
+
+    <div class="ground">
+      <div class="ball"><img src="https://en.js.cx/clipart/ball.svg" alt="축구공" /></div>
+    </div>
+
+    <input type="text" />
   </body>
 </html>

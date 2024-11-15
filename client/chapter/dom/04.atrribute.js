@@ -29,7 +29,9 @@
 const about = getNode('.about');
 // 1. class 속성이 있는지 확인
 const hasAt = about.hasAttribute('class');
-console.log(hasAt);
+
+// const hasAt = about.hasAttribute('class');
+// console.log(hasAt);
 
 // 2. class의 값을 가져와주세요.
 const classValue = about.getAttribute('class');
@@ -62,3 +64,16 @@ console.log(about.dataset.value);
 // - 데이터 유형 중 하나
 // - 자바스크립트 객체 처럼 표현한 문법이다.
 // - 주석이 안된다.
+
+// function attr(node, prop, value) {
+//   if (!value) {
+//     getAttr(node, prop);
+//   } else {
+//     setAttr(node, prop, value);
+//   }
+// }
+
+const attr = (node, prop, value) => (!value ? getAttr(node, prop) : setAttr(node, prop, value));
+
+attr('.about', 'id'); // getter
+attr('.about', 'id', 'star'); // cetter

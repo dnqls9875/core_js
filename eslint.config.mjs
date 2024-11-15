@@ -13,6 +13,10 @@ const types = {
 
 const dom = {
   getNode: true,
+  insertLast: true,
+  getAttr: true,
+  setAttr: true,
+  css: true,
 };
 
 export default [
