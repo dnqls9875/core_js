@@ -39,6 +39,7 @@ function handleSubmit(e) {
   //   insertLast(result, pick);
   // }
 
+  // 예외 처리
   if (name === '' || name.replaceAll(' ', '') === '') {
     showAlert('.alert-error', '공백은 허용되지 않습니다.', 1200);
     // addClass(nameField, 'shake');
