@@ -1,77 +1,75 @@
-// 숫자를 넣게 되면 저절로 이 2개의 합이 계산 되어서 나올 수 있도록
-// clear를 누르면 값이 없어져야 한다.
+import data from './data/data.js';
+import { getNode as $, insertLast, getRandom, clearContents, addClass, removeClass, showAlert, isNumericString, shake, copy } from './lib/index.js';
 
-// named export -> import 시 무조건 { getNode, insertLast }로 받아야 함 // 객체가 나오는 거라 구조 분해 할당으로 할 수 있다.
-// default export -> 중괄호 없이 받을 수 있다. 딱 export 하나만 하면 할 수 있다.
+// [phase-1]
+// 1. 주접 떨기 버튼을 클릭 하는 함수
+//  - 주접 떨기 버튼 가져오기
+//  - 이벤트 연결
 
-// import { getNode as $, getNodes } from './lib/dom/getNode.js';
-// import { insertLast } from './lib/dom/insert.js';
-// import clearContent from './lib/dom/clearContent.js';
+//  2. input 갑 가져오기
 
-import { getNode as $, getNodes, insertLast, clearContents, typeError, refError, syntaxError } from './lib/index.js';
+// 3. data 함수에서 주접 1개 꺼내기
+//  -n 번째 random 주접 꺼내기
+// Math.random*()
 
-function phase1() {
-  /**
-   * 1. input 선택하기 ✅
-   * 2. input 이벤트 바인딩 ✅
-   * 3. input의 value 값 가져오기
-   * 4. 숫자 더하기
-   * 5. result 에 출력하기
-   */
+// 4. result에  항목 랜더링 하기
+//  -insertLast()
 
-  const first = $('#firstNumber');
-  const second = $('#secondNumber');
-  const result = $('.result');
-  const clear = $('#clear');
+//  5. 예외 처리
+//  - 이름이 없을 경우 콘솔에 에러 출력
+//  - 숫자만 들어오면 콘솔에 에러 출력
 
-  function handleInput() {
-    const firstValue = Number(first.value);
-    const secondValue = Number(second.value);
-    const total = firstValue + secondValue;
+const submit = document.querySelector('#submit');
+const nameField = $('#nameField');
+const result = $('.result');
 
-    clearContents(result);
-    insertLast(result, total);
+function handleSubmit(e) {
+  e.preventDefault();
+  const name = nameField.value;
+  const list = data(name);
+  const pick = list[getRandom(list.length)];
+
+  // result.insertAdjacentHTML('beforeend', pick);
+
+  // if (name === '') {
+  //   throw refError('이름을 누락 하였습니다. 제대로 된 이름을 입력해주세요.');
+  // } else if (typeof name === 'number') {
+  //   throw refError('숫자를 입력하셨네요. 잘못 입력하셨어요.');
+  // } else {
+  //   insertLast(result, pick);
+  // }
+
+  if (name === '' || name.replaceAll(' ', '') === '') {
+    showAlert('.alert-error', '공백은 허용되지 않습니다.', 1200);
+    // addClass(nameField, 'shake');
+
+    shake(nameField);
+
+    return;
   }
 
-  function handleClear(e) {
-    e.preventDefault();
-    clearContents(first);
-    clearContents(second);
-    result.textContent = '-';
-  }
+  if (!isNumericString(name)) {
+    showAlert('.alert-error', '정확한 이름을 입력해주세요.', 1200);
 
-  first.addEventListener('input', handleInput);
-  second.addEventListener('input', handleInput);
-  clear.addEventListener('click', handleClear);
+    return;
+  }
+  // & console.log(isNaN(Number(name))); // isNaN NaN인지 아닌지 알 수 있다.
+
+  clearContents(result);
+  insertLast(result, pick);
 }
 
-function phase2() {
-  // 위임을 잡을 때는 가장 큰 부모를 잡아야 함
-  const calculator = document.querySelector('.calculator');
-  const result = document.querySelector('.result');
-  const clear = document.querySelector('#clear');
+function handleCopy() {
+  const text = this.textContent;
 
-  const numberInputs = [...document.querySelectorAll('input:not(#clear)')];
-
-  // 합 더할 때는 reduce를 사용하자
-  function handleInput() {
-    const total = numberInputs.reduce((acc, cur) => acc + cur.value * 1, 0); // input의 값을 가져와서 사용할 때는 문자다 그래서 문자 앞 + 뒤에 *1,/1할 것
-
-    clearContents(result);
-    insertLast(result, total);
-  }
-
-  function handleClear(e) {
-    e.preventDefault();
-    // numberInputs.forEach((input) => {
-    //   clearContents(input);
-    // });
-    numberInputs.forEach(clearContents);
-    result.textContent = '-';
-  }
-
-  calculator.addEventListener('input', handleInput);
-  clear.addEventListener('click', handleClear);
+  // 클립보드 저장하는 법 => 브라우저 방법
+  // 브라우저와 소통하는 건 100% 성공하지 않는다. (불안정하다)
+  copy(text).then(() => {
+    showAlert('.alert-success', '클립보드 복사 완료!');
+  });
 }
 
-phase2();
+submit.addEventListener('click', handleSubmit);
+result.addEventListener('click', handleCopy);
+
+// npm 조사.js // 은는이가 을를
