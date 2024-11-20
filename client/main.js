@@ -1,75 +1,104 @@
-import data from './data/data.js';
-import { getNode as $, insertLast, getRandom, clearContents, addClass, removeClass, showAlert, isNumericString, shake, copy } from './lib/index.js';
+import { memo, attr, clearContents, diceAnimation, endScroll, getNode, getNodes, insertLast } from './lib/index.js';
 
-// [phase-1]
-// 1. 주접 떨기 버튼을 클릭 하는 함수
-//  - 주접 떨기 버튼 가져오기
-//  - 이벤트 연결
+// setInterval 지속 호출
 
-//  2. input 갑 가져오기
+// [주사위 굴리기 버튼을 누르면 주사위가]
+// 1. 주사위 굴리기 버튼을 선택하기 [배열 구조 분해 할당을 해보자 버튼이 3개기 때문에]
+// 2. 클릭 이벤트 바인딩
 
-// 3. data 함수에서 주접 1개 꺼내기
-//  -n 번째 random 주접 꺼내기
-// Math.random*()
+// [주사위가 애니메이션이 될 수 있도록 만들어주세요.]
+// 1. setInterval
+// 2. diceAnimation()
 
-// 4. result에  항목 랜더링 하기
-//  -insertLast()
+// [같은 버튼 눌렀을 때 애니메이션 재생 or 정지]
+// 1. toggle 하려면 상태변수가 필요 true | false
+// 2. 조건 처리
 
-//  5. 예외 처리
-//  - 이름이 없을 경우 콘솔에 에러 출력
-//  - 숫자만 들어오면 콘솔에 에러 출력
+// [기록 버튼을 누르면]
+//
 
-const submit = document.querySelector('#submit');
-const nameField = $('#nameField');
-const result = $('.result');
+// [table이 등장]
+// table 안쪽에 tr 태그 데이터를 넣고 랜더링
+// 1. 태그 만들기
+// 2. 랜더링 하기
+// 데이터 : cube를 잡고 dice속성(주사위눈)
 
-function handleSubmit(e) {
-  e.preventDefault();
-  const name = nameField.value;
-  const list = data(name);
-  const pick = list[getRandom(list.length)];
+// [기록 누르면 밑에 지점 찾을 수 있게 scrollTop = scrollHegiht]
 
-  // result.insertAdjacentHTML('beforeend', pick);
+// [reset 버튼을 눌렀을 때 모든 항목 초기화]
 
-  // if (name === '') {
-  //   throw refError('이름을 누락 하였습니다. 제대로 된 이름을 입력해주세요.');
-  // } else if (typeof name === 'number') {
-  //   throw refError('숫자를 입력하셨네요. 잘못 입력하셨어요.');
-  // } else {
-  //   insertLast(result, pick);
-  // }
+// 배열 구조 분해 할당
+const [rollingButton, recordButton, resetButton] = getNodes('.buttonGroup > button');
+const recordListWrapper = getNode('.recordListWrapper');
 
-  if (name === '' || name.replaceAll(' ', '') === '') {
-    showAlert('.alert-error', '공백은 허용되지 않습니다.', 1200);
-    // addClass(nameField, 'shake');
+let isClicked = false;
+let stopAnimation;
 
-    shake(nameField);
+let count = 0;
+let total = 0;
 
-    return;
-  }
+function createItem(value) {
+  // ++count 이유는 계속 횟수가 추가되어야 하니깐
+  const templete = `
+  <tr>
+    <td>${++count}</td>
+    <td>${value}</td>
+    <td>${(total += value)}</td>
+ </tr>
+  `;
+  return templete;
 
-  if (!isNumericString(name)) {
-    showAlert('.alert-error', '정확한 이름을 입력해주세요.', 1200);
-
-    return;
-  }
-  // & console.log(isNaN(Number(name))); // isNaN NaN인지 아닌지 알 수 있다.
-
-  clearContents(result);
-  insertLast(result, pick);
+  // 변수가 사용 될 때는 아래에 return 변수명
+  // 변수 없을 땐 위에서 return 바로 해줘도 됨
 }
 
-function handleCopy() {
-  const text = this.textContent;
+function renderRecordItem() {
+  // const diceNumber = +attr(getNode('#cube'), 'dice');
+  const diceNumber = +memo('cube').getAttribute('dice') / 1;
 
-  // 클립보드 저장하는 법 => 브라우저 방법
-  // 브라우저와 소통하는 건 100% 성공하지 않는다. (불안정하다)
-  copy(text).then(() => {
-    showAlert('.alert-success', '클립보드 복사 완료!');
-  });
+  // getNode('tbody').insertAdjacentHTML('beforeend', templete);
+  insertLast('.recordListWrapper tbody', createItem(diceNumber));
 }
 
-submit.addEventListener('click', handleSubmit);
-result.addEventListener('click', handleCopy);
+const handleRollingDice = (() => {
+  // setInterval(() => {
+  //   diceAnimation();
+  // }, 100);
+  // setInterval(diceAnimation, 100);
 
-// npm 조사.js // 은는이가 을를
+  return () => {
+    if (!isClicked) {
+      stopAnimation = setInterval(diceAnimation, 100);
+      recordButton.disabled = true;
+      resetButton.disabled = true;
+
+      // 여기서 const, let 으로 변수를 지정하면 else clearInterval 값을 가져오지 못함
+      // 이유는? 스코프에 갇혀있기 때문에 스코프 단위는 변수 전달이 안된다.
+      // 그럼 전역에 스코프 밖 외부변수로 선언하고 재할당을 해주면 된다!
+    } else {
+      clearInterval(stopAnimation);
+      recordButton.disabled = false;
+      resetButton.disabled = false;
+    }
+
+    isClicked = !isClicked; // 반전시킨다.
+  };
+})();
+
+function handleRecord() {
+  recordListWrapper.hidden = false;
+  renderRecordItem();
+  // recordListWrapper.scrollTop = recordListWrapper.scrollHeight;
+  endScroll(recordListWrapper);
+}
+
+function handleReset() {
+  recordListWrapper.hidden = true;
+  clearContents('tbody');
+  count = 0;
+  total = 0;
+}
+
+rollingButton.addEventListener('click', handleRollingDice);
+recordButton.addEventListener('click', handleRecord);
+resetButton.addEventListener('click', handleReset);
