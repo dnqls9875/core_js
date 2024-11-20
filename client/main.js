@@ -31,9 +31,6 @@ import { memo, attr, clearContents, diceAnimation, endScroll, getNode, getNodes,
 const [rollingButton, recordButton, resetButton] = getNodes('.buttonGroup > button');
 const recordListWrapper = getNode('.recordListWrapper');
 
-let isClicked = false;
-let stopAnimation;
-
 let count = 0;
 let total = 0;
 
@@ -61,6 +58,9 @@ function renderRecordItem() {
 }
 
 const handleRollingDice = (() => {
+  let isClicked = false;
+  let stopAnimation;
+
   // setInterval(() => {
   //   diceAnimation();
   // }, 100);
