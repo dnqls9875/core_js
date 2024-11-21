@@ -8,7 +8,7 @@ const END_POINT = 'https://jsonplaceholder.typicode.com/users/2';
 // 4 : complete
 
 // 이렇게 작성하면 open왜 에러가 나냐면 어디랑 통신할건지 작성하지 않아서 그런다.
-console.log(xhr.response); // 빈 문자
+// console.log(xhr.response); // ? 빈 문자
 
 // 객체 구조 분해 할당
 function xhr({
@@ -31,7 +31,7 @@ function xhr({
   // 객체와 key, value를 분리 (Object.entries)
   // 반복문 (forEach)
 
-  if (!method === 'DELETE') {
+  if (!(method === 'DELETE')) {
     Object.entries(headers).forEach(([k, v]) => {
       xhr.setRequestHeader(k, v);
     });
@@ -40,6 +40,7 @@ function xhr({
   // xhr.setRequestHeader(key,value);
 
   xhr.addEventListener('readystatechange', () => {
+    // response 는 데이터가 담겨있는곳
     const { status, response, readyState } = xhr;
     if (readyState === 4) {
       if (status >= 200 && status < 400) {
