@@ -181,26 +181,26 @@ export function xhrPromise(options = {}) {
 
 // })
 
-xhrPromise.get = (url) => xhrPromise({ url });
-xhrPromise.post = (url, body) => xhrPromise({ url, body, method: 'POST' });
-xhrPromise.put = (url, body) => xhrPromise({ url, body, method: 'PUT' });
-xhrPromise.delete = (url) => xhrPromise({ url, method: 'DELETE' });
+// xhrPromise.get = (url) => xhrPromise({ url });
+// xhrPromise.post = (url, body) => xhrPromise({ url, body, method: 'POST' });
+// xhrPromise.put = (url, body) => xhrPromise({ url, body, method: 'PUT' });
+// xhrPromise.delete = (url) => xhrPromise({ url, method: 'DELETE' });
 
-xhrPromise
-  .get(END_POINT)
-  .then((res) => {
-    console.log(res);
+// xhrPromise
+//   .get(END_POINT)
+//   .then((res) => {
+//     // console.log(res);
 
-    res.forEach(({ website }) => {
-      const tag = `
-      <div>site : ${website}</div>
-    `;
+//     res.forEach(({ website }) => {
+//       const tag = `
+//       <div>site : ${website}</div>
+//     `;
 
-      document.body.insertAdjacentHTML('beforeend', tag);
-    });
-  })
-  .then(() => {})
-  .catch(() => {});
+//       document.body.insertAdjacentHTML('beforeend', tag);
+//     });
+//   })
+//   .then(() => {})
+//   .catch(() => {});
 
 // xhrPromise.put()
 // xhrPromise.delete()

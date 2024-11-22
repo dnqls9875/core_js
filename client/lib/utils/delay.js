@@ -49,7 +49,7 @@ const defaultOptions = {
   timeout: 1000,
 };
 
-function delayP(options) {
+export function delayP(options) {
   let config = { ...defaultOptions };
 
   if (isNumber(options)) {
@@ -83,7 +83,7 @@ delayP()
     return delayP(false);
   })
   .then((res) => {
-    console.log(res);
+    // console.log(res);
   });
 
 // delayP(false)
@@ -202,7 +202,7 @@ async function 라면끓이기() {
   //   });
 }
 
-라면끓이기();
+// 라면끓이기();
 
 // function getData() {
 //   xhrPromise.get('https://pokeapi.co/api/v2/pokemon/30').then((res) => {
@@ -213,15 +213,12 @@ async function 라면끓이기() {
 // }
 
 async function getData() {
-  const data = await xhrPromise.get('https://pokeapi.co/api/v2/pokemon/30').then((res) => {
-    insertLast(document.body, `<img src="${res.sprites.other.showdown['front_default']}" alt="" />`);
-  });
-
-  console.log(data);
-
-  //  const data = await xhrPromise.get('https://pokeapi.co/api/v2/pokemon/50');
-
-  //  insertLast(document.body, `<img src="${data.sprites.other.showdown['front_default']}" alt="" />`);
+  // const data = await xhrPromise.get('https://pokeapi.co/api/v2/pokemon/30').then((res) => {
+  //   insertLast(document.body, `<img src="${res.sprites.other.showdown['front_default']}" alt="" />`);
+  // });
+  // console.log(data);
+  // const data = await xhrPromise.get('https://pokeapi.co/api/v2/pokemon/50');
+  // insertLast(document.body, `<img src="${data.sprites.other.showdown['front_default']}" alt="" />`);
 }
 
-getData();
+// getData();
