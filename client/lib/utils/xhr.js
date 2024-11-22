@@ -1,16 +1,21 @@
-const END_POINT = 'https://jsonplaceholder.typicode.com/users/2';
+const END_POINT = 'https://jsonplaceholder.typicode.com/users';
 
 // [readyState]
 // 0 : uninitialized
 // 1 : loading
 // 2 : loaded
 // 3 : interactive
-// 4 : complete
+// 4 : complete  => 성공 | 실패
 
 // 이렇게 작성하면 open왜 에러가 나냐면 어디랑 통신할건지 작성하지 않아서 그런다.
 // console.log(xhr.response); // ? 빈 문자
 
 // 객체 구조 분해 할당
+
+/* -------------------------------------------- */
+/*                   callback                   */
+/* -------------------------------------------- */
+
 function xhr({
   method = 'GET',
   url = '',
@@ -21,15 +26,16 @@ function xhr({
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
   },
-}) {
+} = {}) {
   const xhr = new XMLHttpRequest();
 
-  xhr.open(method, url); // '통신 방식' , 주소(변수로 담아도 된다.) // 0.4s
+  // '통신 방식' , 주소(변수로 담아도 된다.) // 0.4s
 
   // 우리는 json파일을 보낸거야 라는 사용 설명서를 setRequestHeader => Header에 실어 보낸다.
 
   // 객체와 key, value를 분리 (Object.entries)
   // 반복문 (forEach)
+  xhr.open(method, url);
 
   if (!(method === 'DELETE')) {
     Object.entries(headers).forEach(([k, v]) => {
@@ -37,11 +43,9 @@ function xhr({
     });
   }
 
-  // xhr.setRequestHeader(key,value);
-
   xhr.addEventListener('readystatechange', () => {
-    // response 는 데이터가 담겨있는곳
     const { status, response, readyState } = xhr;
+
     if (readyState === 4) {
       if (status >= 200 && status < 400) {
         const data = JSON.parse(response);
@@ -51,10 +55,6 @@ function xhr({
       }
     }
   });
-
-  // 데이터를 보낼 때는 문자형 데이터로 보내야 한다. 그래서
-  // JSON.stringify(body) 이렇게 보내야함.
-  // 근데 이건 생 텍스트를 보낸 것과 같음
   xhr.send(JSON.stringify(body));
 }
 
@@ -63,15 +63,14 @@ const obj = {
   age: 38,
 };
 
-// 콜백으로 전달하는 매개변수가 많아지면 객체로 전달하는게 낫다.
 // xhr({
-//   method: 'DELETE',
+//   method:"DELETE",
 //   url: END_POINT,
-//   success: (data) => {
-//     console.log(data);
+//   success: (data)=>{
+//     console.log( data );
 //   },
-//   fail: () => {},
-// });
+//   fail: ()=>{},
+// })
 
 xhr.get = (url, success, fail) => {
   xhr({ url, success, fail });
@@ -96,6 +95,7 @@ xhr.put = (url, body, success, fail) => {
     fail,
   });
 };
+
 xhr.delete = (url, success, fail) => {
   xhr({
     method: 'DELETE',
@@ -105,9 +105,102 @@ xhr.delete = (url, success, fail) => {
   });
 };
 
-// xhr.get(
+// xhr.delete(
 //   END_POINT,
 //   (data)=>{
 //     console.log( data );
+//   },
+//   ()=>{
+
 //   }
 // )
+
+/* -------------------------------------------- */
+/*                    promise                   */
+/* -------------------------------------------- */
+
+// mixin
+
+const defaultOptions = {
+  method: 'GET',
+  url: '',
+  body: null,
+  errorMessage: '서버와의 통신이 원활하지 않습니다.',
+  headers: {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+  },
+};
+
+export function xhrPromise(options = {}) {
+  const { method, url, errorMessage, body, headers } = {
+    ...defaultOptions,
+    ...options,
+    headers: {
+      ...defaultOptions.headers,
+      ...options.headers,
+    },
+  };
+
+  const xhr = new XMLHttpRequest();
+
+  xhr.open(method, url);
+
+  if (!(method === 'DELETE')) {
+    Object.entries(headers).forEach(([k, v]) => {
+      xhr.setRequestHeader(k, v);
+    });
+  }
+
+  xhr.send(body ? JSON.stringify(body) : null);
+
+  return new Promise((resolve, reject) => {
+    xhr.addEventListener('readystatechange', () => {
+      if (xhr.readyState === 4) {
+        // complete
+        if (xhr.status >= 200 && xhr.status < 400) {
+          resolve(JSON.parse(xhr.response));
+        } else {
+          reject({ message: '데이터 통신이 원활하지 않습니다.' });
+        }
+      }
+    });
+  });
+}
+
+// xhrPromise({
+//   method:'GET',
+//   url:END_POINT
+// })
+// .then((res)=>{
+//   console.log( res );
+
+// })
+// .catch((err)=>{
+//   console.log( err );
+
+// })
+
+xhrPromise.get = (url) => xhrPromise({ url });
+xhrPromise.post = (url, body) => xhrPromise({ url, body, method: 'POST' });
+xhrPromise.put = (url, body) => xhrPromise({ url, body, method: 'PUT' });
+xhrPromise.delete = (url) => xhrPromise({ url, method: 'DELETE' });
+
+xhrPromise
+  .get(END_POINT)
+  .then((res) => {
+    console.log(res);
+
+    res.forEach(({ website }) => {
+      const tag = `
+      <div>site : ${website}</div>
+    `;
+
+      document.body.insertAdjacentHTML('beforeend', tag);
+    });
+  })
+  .then(() => {})
+  .catch(() => {});
+
+// xhrPromise.put()
+// xhrPromise.delete()
