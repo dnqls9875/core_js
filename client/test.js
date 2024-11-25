@@ -1,21 +1,40 @@
-const URL = 'https://pokeapi.co/api/v2/pokemon/172';
+const defaultOptions = {
+  method: 'GET',
+  body: null,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+};
 
-async function getData() {
-  const response = await fetch(URL, {
-    method: 'POST',
-    body: null,
+async function getData(options) {
+  const { url, ...rest } = {
+    ...defaultOptions,
+    ...options,
     headers: {
-      'Content-Type': 'application/json',
+      ...defaultOptions.headers,
+      ...options.headers,
     },
-  });
+  };
+
+  const response = await fetch(url, rest);
 
   const data = await response.json();
+
+  document.body.insertAdjacentHTML(
+    'beforeend',
+    `
+    <div class="pokemon">
+      <h2>${data.name}</h2>
+      <img src="${data.sprites.front_default}" alt="${data.name}" />
+    </div>
+  `
+  );
+
   console.log(data);
 
-  return response;
+  return data;
 }
 
-const monster = await getData();
-// promise 객체 반환 앞에 awiat으로 결과값 받아올 수 있다.
-// await 사용하자마자 Response 객체를 반환
-console.log(monster);
+const monster = await getData({
+  url: 'https://pokeapi.co/api/v2/pokemon/9',
+});
