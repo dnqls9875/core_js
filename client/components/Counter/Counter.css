@@ -1,0 +1,26 @@
+/* @import url(../../style.css); */
+
+.counter {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  background-color: var(--primary);
+  color: var(--white);
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  translate: -50% -50%;
+  padding: var(--space-1) var(--space-4);
+  border-radius: var(--radius-m);
+
+  & button {
+    font-size: 1.5rem;
+    background-color: transparent;
+    border: none;
+    color: var(--white);
+    cursor: pointer;
+  }
+
+  & span {
+  }
+}
