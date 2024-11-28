@@ -1,0 +1,46 @@
+.item {
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #efefef;
+  padding: 1rem;
+  border-radius: 10px;
+
+  input[type='text'] {
+    padding: 0.2rem 0.7rem;
+    border-radius: 20px;
+    border: none;
+    background-color: transparent;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    &:focus {
+      outline: 2px solid orange;
+    }
+  }
+
+  input[type='checkbox'] {
+    zoom: 1.7rem;
+  }
+
+  .delete-item {
+    width: 24px;
+    height: 24px;
+    background-color: #e5553f;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: transform all ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.done {
+  opacity: 0.2;
+  pointer-events: none;
+}
