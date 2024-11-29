@@ -1,0 +1,32 @@
+.title {
+  background-color: red;
+}
+
+.shop {
+  & ul {
+    border: 1px solid #000;
+    & li {
+      display: flex;
+      gap: 10px;
+      position: relative;
+    }
+  }
+}
+
+.item-info {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 5px;
+}
+
+.cancleBtn {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  display: block;
+  background-color: red;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
