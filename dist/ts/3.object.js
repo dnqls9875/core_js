@@ -1,11 +1,11 @@
-/* Ojbect Type */
+/* Object Type */
 const user = {
     // id: 1,
     name: "tiger",
     age: 30,
 };
 user.id = 10;
-// user.address = "a"; // 오류
+// user.address = "a";
 const config = {
     apiKey: crypto.randomUUID(),
 };

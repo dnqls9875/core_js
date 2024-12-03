@@ -23,19 +23,17 @@ var TrafficLight;
 // 신호등 색상에 따라 동작을 변경하는 함수
 function setTrafficLight(light) {
     switch (light) {
-        // some code
         case TrafficLight.Red:
-            console.log("Stop!");
+            console.log("멈춰라 누가 움직여도 된다고 했나.");
             break;
         case TrafficLight.Yellow:
-            console.log("..멈칫!");
+            console.log("줄여라 누가 꼬리 물어도 된다고 했나.");
             break;
         case TrafficLight.Green:
-            console.log("gogo!");
-            break;
+            console.log("너가 움직일 수 있는건 지금뿐.");
     }
 }
 // 사용 예시
-setTrafficLight(TrafficLight.Red); // Stop!
-setTrafficLight(TrafficLight.Green); // Go!
+setTrafficLight(TrafficLight.Red); // 멈춰라 누가 움직여도 된다고 했나.
+setTrafficLight(TrafficLight.Green); // 너가 움직일 수 있는건 지금뿐.
 export {};

@@ -1,12 +1,12 @@
 const product1 = {
-    id: "abc123",
-    name: "Laptop",
-    price: 1000,
+    id: 12341,
+    name: "컴퓨터",
+    price: 590000,
 };
 const product2 = {
-    id: 123456,
-    name: "Smartphone",
-    price: 500,
+    id: "cpu-2000",
+    name: "노트북",
+    price: 460000,
 };
 // & interface 사용 시
 // interface Employee extends Person {
