@@ -1,14 +1,25 @@
 {
-  "include": ["src"], // include 폴더를 만든다.
   "compilerOptions": {
-    // 옵션을 넣는다.
-    "outDir": "dist", // dist 폴더에 넣어 컴파일 하겠다/
-    "target": "ESNext", // 컴파일 시 버전의 타겟을 설정하겠다. ESNext(항상 최신버전으로)
-    "moduleResolution": "node", // 컴파일 시 여기에 만든 파일을 모두 node에 의존하게하겠다.
-    "skipLibCheck": true,
+    "target": "ES2020",
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
     "module": "ESNext",
-    "moduleDetection": "force", // 강제로 moduleDetection 설정하겠다. export를 주지 않아도 에러가 나지 않는다.
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+
+    /* Linting */
     "strict": true,
-    "noImplicitAny": false
-  }
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["src"]
 }
