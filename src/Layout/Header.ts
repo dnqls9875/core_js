@@ -1,53 +1,100 @@
-import { LitElement, html, css, CSSResultGroup } from "lit";
-import { customElement } from "lit/decorators.js";
+import { css, CSSResultGroup, html, LitElement } from "lit";
+import { customElement, state } from "lit/decorators.js";
+import Swal from "sweetalert2";
+import { Auth } from "../@types/type";
 import resetCSS from "./resetCSS";
+import pb from "../api/pocketbase";
 
 @customElement("c-header")
 class Header extends LitElement {
+  // 데이터 상태 정의
+  // 내부적(컴포넌트 안)에서만 사용하겠다.
+  // 단원
+  @state() private loginData: Auth = {} as Auth;
+
   static styles: CSSResultGroup = [
     resetCSS,
     css`
       header {
         display: flex;
         justify-content: space-between;
-        background-color: #fff;
+        background-color: white;
         color: black;
         padding: 1rem;
-      }
-      .logo {
-        a {
+
+        .logo {
           display: flex;
           align-items: center;
           gap: 0.3rem;
         }
-      }
-      nav {
-        display: flex;
-        align-items: center;
-        ul {
+
+        nav {
           display: flex;
-          gap: 1rem;
+          align-items: center;
+
+          ul {
+            display: flex;
+            gap: 1rem;
+          }
         }
       }
     `,
   ];
-  // static get styles = []
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.fetchData();
+  }
+
+  fetchData() {
+    const auth = JSON.parse(localStorage.getItem("auth") ?? "{}");
+    this.loginData = auth;
+  }
+
+  handleLogout(e: Event) {
+    e.preventDefault();
+
+    Swal.fire({
+      title: "로그아웃",
+      text: "로그아웃 하시겠습니까?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "로그아웃",
+    }).then(({ isConfirmed }) => {
+      if (isConfirmed) {
+        localStorage.removeItem("auth");
+        pb.authStore.clear();
+        // this.loginData.isAuth = false;
+        // this.requestUpdate()
+        location.reload();
+      }
+    });
+  }
 
   render() {
+    const { isAuth, user } = this.loginData;
+
     return html`
       <header>
         <h1 class="logo">
-          <a href="/"
-            ><img style="width:30px" src="/logo.png" alt="" />
-            <span>쇼핑은 역시 범Card몰</span>
-          </a>
+          <a href="/"><img style="width:30px" src="/logo.png" alt="3D 호랑이 얼굴" /></a>
+          <span>범Card몰</span>
         </h1>
         <nav>
           <ul>
             <li><a href="/">About</a></li>
-            <li><a href="/">Product</a></li>
+            <li><a href="/src/pages/product/">Product</a></li>
             <li><a href="/">Contact</a></li>
-            <li><a href="/">Login</a></li>
+            <li>
+              ${!isAuth
+                ? html`<a href="/src/pages/login/">Login</a>`
+                : html`
+                    <div>
+                      <span>${user.name}님</span>
+                      <a @click=${this.handleLogout} href="/">Logout</a>
+                    </div>
+                  `}
+            </li>
           </ul>
         </nav>
       </header>
