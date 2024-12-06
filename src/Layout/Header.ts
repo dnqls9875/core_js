@@ -7,9 +7,6 @@ import pb from "../api/pocketbase";
 
 @customElement("c-header")
 class Header extends LitElement {
-  // 데이터 상태 정의
-  // 내부적(컴포넌트 안)에서만 사용하겠다.
-  // 단원
   @state() private loginData: Auth = {} as Auth;
 
   static styles: CSSResultGroup = [

@@ -1,4 +1,3 @@
-import { Record } from "./../@types/type.d";
 import { LitElement, html, css, CSSResultGroup } from "lit";
 import { customElement } from "lit/decorators.js";
 import resetCSS from "../Layout/resetCSS";
@@ -7,15 +6,15 @@ import Swal from "sweetalert2";
 
 @customElement("login-element")
 class Login extends LitElement {
-  static styles?: CSSResultGroup = [
+  static styles: CSSResultGroup = [
     resetCSS,
     css`
       .container {
-        max-inline-size: 400px;
+        max-width: 400px;
         position: absolute;
-        inset-block-start: 50%;
-        inset-inline-start: 50%;
-        translate: -50% -50%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
         text-align: center;
 
         & h1 {
@@ -25,38 +24,39 @@ class Login extends LitElement {
 
         & hr {
           margin: 2rem 0;
-          block-size: 4px;
-          background-color: #fff;
+          height: 4px;
+          background-color: white;
+        }
+
+        .register {
+          color: #fff;
         }
 
         & form {
-          margin-block-end: 5rem;
+          margin-bottom: 5rem;
 
           & input {
             box-sizing: border-box;
             border: 1px solid rgb(122, 122, 122);
             padding: 1rem;
-            min-inline-size: 300px;
+            min-width: 300px;
             margin: 0.2rem 0;
             outline: none;
 
             &:focus {
-              border: 2px solid dodgerblue;
+              border: 1px solid dodgerblue;
             }
           }
 
           & button[type="submit"] {
-            margin-block-start: 1.5rem;
+            margin-top: 1.5rem;
             border: none;
-            background-color: dodgerblue;
-            color: #fff;
+            background: dodgerblue;
+            color: white;
             padding: 1rem;
             cursor: pointer;
-            inline-size: 100%;
+            width: 100%;
           }
-        }
-        .register {
-          color: #fff;
         }
       }
     `,
@@ -72,8 +72,8 @@ class Login extends LitElement {
 
   async fetchData() {
     try {
-      // const id = "dnqls2446@gmail.com";
-      // const pw = "dn12ql34!";
+      // const id = 'seonbeom2@gmail.com';
+      // const pw = 'dkssud123!@';
 
       const id = this.idInput.value;
       const pw = this.pwInput.value;
@@ -92,7 +92,7 @@ class Login extends LitElement {
       );
 
       Swal.fire({
-        title: "로그인 성공",
+        title: "로그인 성공!",
         text: "메인 페이지로 이동합니다.",
         icon: "success",
         confirmButtonText: "닫기",
@@ -104,12 +104,14 @@ class Login extends LitElement {
     } catch {
       Swal.fire({
         title: "로그인 실패",
-        text: "아이디 또는 비밀번호가 올바르지 않습니다",
+        text: "아이디 또는 비밀번호가 올바르지 않습니다.",
         icon: "error",
         confirmButtonText: "닫기",
       }).then(() => {
         this.idInput.value = "";
         this.pwInput.value = "";
+
+        // this.idInput.focus()
       });
     }
   }

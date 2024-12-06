@@ -1,0 +1,39 @@
+.container {
+  padding: 2rem;
+  margin: 0 auto;
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-inline-size: 400px;
+    margin: 0 auto;
+  }
+
+  & input {
+    padding: 0.5rem;
+    border: 1px solid #fff;
+    inline-size: 100%;
+  }
+}
+
+.real-price,
+.buttonGroup {
+  text-align: center;
+}
+
+button {
+  padding: 0.4rem 1rem;
+  border: 1px solid #000;
+  cursor: pointer;
+  margin-block-start: 2rem;
+}
+
+.cancel {
+  background-color: hotpink;
+  color: #fff;
+}
+.modify {
+  background-color: dodgerblue;
+  color: #fff;
+}
