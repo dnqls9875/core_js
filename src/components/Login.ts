@@ -28,10 +28,6 @@ class Login extends LitElement {
           background-color: white;
         }
 
-        .register {
-          color: #fff;
-        }
-
         & form {
           margin-bottom: 5rem;
 

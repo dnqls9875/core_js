@@ -3,7 +3,7 @@ import { customElement, property } from "lit/decorators.js";
 import resetCSS from "../Layout/resetCSS";
 import pb from "../api/pocketbase";
 
-@customElement("new-post")
+@customElement("newpost-element")
 class NewPost extends LitElement {
   @property() fileImages: { image: string; label: string }[] = [
     {
