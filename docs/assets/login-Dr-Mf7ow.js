@@ -1,4 +1,4 @@
-import{r as d,i as p,b as c,p as u,S as a,x as h,t as g}from"./Header-CpvqJSKz.js";var m=Object.defineProperty,f=Object.getOwnPropertyDescriptor,b=(t,r,i,o)=>{for(var e=o>1?void 0:o?f(r,i):r,n=t.length-1,l;n>=0;n--)(l=t[n])&&(e=(o?l(r,i,e):l(e))||e);return o&&e&&m(r,i,e),e};let s=class extends c{get idInput(){return this.renderRoot.querySelector("#idField")}get pwInput(){return this.renderRoot.querySelector("#pwField")}async fetchData(){try{const t=this.idInput.value,r=this.pwInput.value;await u.collection("users").authWithPassword(t,r);const{record:i,token:o}=JSON.parse(localStorage.getItem("pocketbase_auth")??"{}");localStorage.setItem("auth",JSON.stringify({isAuth:!!i,user:i,token:o})),a.fire({title:"로그인 성공!",text:"메인 페이지로 이동합니다.",icon:"success",confirmButtonText:"닫기"}).then(()=>{setTimeout(()=>{location.href="/index.html"},300)})}catch{a.fire({title:"로그인 실패",text:"아이디 또는 비밀번호가 올바르지 않습니다.",icon:"error",confirmButtonText:"닫기"}).then(()=>{this.idInput.value="",this.pwInput.value=""})}}handleLogin(t){t.preventDefault(),this.fetchData()}render(){return h`
+import{r as d,i as p,b as u,p as c,S as a,x as h,t as m}from"./Header-CpvqJSKz.js";var g=Object.defineProperty,b=Object.getOwnPropertyDescriptor,f=(t,r,i,o)=>{for(var e=o>1?void 0:o?b(r,i):r,n=t.length-1,l;n>=0;n--)(l=t[n])&&(e=(o?l(r,i,e):l(e))||e);return o&&e&&g(r,i,e),e};let s=class extends u{get idInput(){return this.renderRoot.querySelector("#idField")}get pwInput(){return this.renderRoot.querySelector("#pwField")}async fetchData(){try{const t=this.idInput.value,r=this.pwInput.value;await c.collection("users").authWithPassword(t,r);const{record:i,token:o}=JSON.parse(localStorage.getItem("pocketbase_auth")??"{}");localStorage.setItem("auth",JSON.stringify({isAuth:!!i,user:i,token:o})),a.fire({title:"로그인 성공!",text:"메인 페이지로 이동합니다.",icon:"success",confirmButtonText:"닫기"}).then(()=>{setTimeout(()=>{location.href="/index.html"},300)})}catch{a.fire({title:"로그인 실패",text:"아이디 또는 비밀번호가 올바르지 않습니다.",icon:"error",confirmButtonText:"닫기"}).then(()=>{this.idInput.value="",this.pwInput.value=""})}}handleLogin(t){t.preventDefault(),this.fetchData()}render(){return h`
       <div class="container">
         <h1>로그인</h1>
         <hr />
@@ -36,10 +36,6 @@ import{r as d,i as p,b as c,p as u,S as a,x as h,t as g}from"./Header-CpvqJSKz.j
           background-color: white;
         }
 
-        .register {
-          color: #fff;
-        }
-
         & form {
           margin-bottom: 5rem;
 
@@ -67,4 +63,4 @@ import{r as d,i as p,b as c,p as u,S as a,x as h,t as g}from"./Header-CpvqJSKz.j
           }
         }
       }
-    `];s=b([g("login-element")],s);
+    `];s=f([m("login-element")],s);
